@@ -21,6 +21,26 @@ public class UserApp {
 		halls.add(h1);
 		halls.add(h2);
 		
+		tickets.add(new Ticket(h1, Hour.EIGHTEEN, 1, 1));
+//		tickets.add(new Ticket(h1, Hour.EIGHTEEN, 1, 2));
+		tickets.add(new Ticket(h1, Hour.EIGHTEEN, 1, 3));
+		tickets.add(new Ticket(h1, Hour.EIGHTEEN, 1, 4));
+		tickets.add(new Ticket(h1, Hour.EIGHTEEN, 2, 1));
+		tickets.add(new Ticket(h1, Hour.EIGHTEEN, 2, 2));
+//		tickets.add(new Ticket(h1, Hour.EIGHTEEN, 2, 3));
+		tickets.add(new Ticket(h1, Hour.EIGHTEEN, 2, 4));
+		tickets.add(new Ticket(h1, Hour.EIGHTEEN, 3, 1));
+		tickets.add(new Ticket(h1, Hour.EIGHTEEN, 3, 2));
+		tickets.add(new Ticket(h1, Hour.EIGHTEEN, 3, 3));
+//		tickets.add(new Ticket(h1, Hour.EIGHTEEN, 3, 4));
+		tickets.add(new Ticket(h1, Hour.EIGHTEEN, 4, 1));
+		tickets.add(new Ticket(h1, Hour.EIGHTEEN, 4, 2));
+		tickets.add(new Ticket(h1, Hour.EIGHTEEN, 4, 3));
+		tickets.add(new Ticket(h1, Hour.EIGHTEEN, 4, 4));
+		
+//		System.out.println(h1.getSeats(tickets, Hour.EIGHTEEN, 2));
+		 
+		
 		Scanner scanner = new Scanner(System.in);
 		while(true){
 			System.out.println("Select a hall:");
@@ -37,11 +57,15 @@ public class UserApp {
 			}
 			Integer hourChoice = Integer.valueOf(scanner.nextLine());
 			Hour chosenHour = hours[hourChoice-1];
+			int availableSpace = chosenHall.getAvailableSpace(tickets, chosenHour);
+			if(availableSpace==0){
+				System.out.println("No space available for the selected hour.");
+				continue;
+			}
 			
 			System.out.println("Enter number of tickets:");
 			Integer numTickets = Integer.valueOf(scanner.nextLine());
 			
-			int availableSpace = chosenHall.getAvailableSpace(tickets, chosenHour);
 			if(availableSpace<numTickets){
 				System.out.println("There is not enough space for "+numTickets+" people");
 				continue;
@@ -51,9 +75,24 @@ public class UserApp {
 				System.out.println("Tickets are listed below:");
 				System.out.println(contiguousSeats);
 				tickets.addAll(contiguousSeats);
+				System.out.println("Ticket sale complete. The seat diagram for the hall "+chosenHall.getName()+" is shown below:");
+				printSeats(chosenHall.getEmptySeats(tickets, chosenHour));
+				System.out.println();
 				continue;
 			}
+			System.out.println("No contiguous seats are available for "+numTickets+" people. Do you want to continue? (Y/N): ");
+			String cont = scanner.nextLine();
+			if(cont.equalsIgnoreCase("n")){
+				continue;
+			}
+			List<Ticket> seats = h1.getSeats(tickets, chosenHour, numTickets);
+			System.out.println("Tickets are listed below:");
+			System.out.println(seats);
+			tickets.addAll(seats);
 			
+			System.out.println("Ticket sale complete. The seat diagram for the hall "+chosenHall.getName()+" is shown below:");
+			printSeats(chosenHall.getEmptySeats(tickets, chosenHour));
+			System.out.println();
 		}
 		
 		
