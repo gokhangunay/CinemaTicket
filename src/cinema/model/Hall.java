@@ -42,6 +42,19 @@ public class Hall {
 		return "Hall [id=" + id + ", rows=" + rows + ", cols=" + cols
 				+ ", name=" + name + "]";
 	}
+	
+	public int getAvailableSpace(List<Ticket> tickets, Hour hour){
+		boolean[][] emptySeats = getEmptySeats(tickets, hour);
+		int available = 0;
+		for (int i = 0; i < emptySeats.length; i++) {
+			for (int j = 0; j < emptySeats[i].length; j++) {
+				if(emptySeats[i][j]){
+					available++;
+				}
+			}
+		}
+		return available;
+	}
 
 	public boolean[][] getEmptySeats(List<Ticket> tickets, Hour hour) {
 
