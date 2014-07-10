@@ -44,6 +44,25 @@ public class Hall {
 				+ ", name=" + name + "]";
 	}
 	
+	public List<Ticket> getSeats(List<Ticket> tickets, Hour hour, int numPeople){
+		boolean[][] emptySeats = getEmptySeats(tickets, hour);
+		List<Ticket> result = new ArrayList<>();
+		int counter = 0;
+		for (int i = 0; i < emptySeats.length; i++) {
+			for (int j = 0; j < emptySeats[i].length; j++) {
+				if(emptySeats[i][j]){
+					Ticket t = new Ticket(this, hour, i+1, j+1);
+					result.add(t);
+					counter++;
+				}
+				if(counter==numPeople){
+					return result;
+				}
+			}
+		}
+		return result;
+	}
+	
 	public List<Ticket> getContiguousSeats(List<Ticket> tickets, Hour hour, int numPeople){
 		boolean[][] emptySeats = getEmptySeats(tickets, hour);
 		int counter = 0;
