@@ -13,7 +13,7 @@ public class UserApp {
 	
 	public static void main(String[] args) {
 		
-		Hall h1 = new Hall(5, 5, "salon 1");
+		Hall h1 = new Hall(4, 4, "salon 1");
 		Hall h2 = new Hall(15, 15, "salon 2");
 		
 		List<Ticket> tickets = new ArrayList<>();
@@ -21,7 +21,6 @@ public class UserApp {
 		halls.add(h1);
 		halls.add(h2);
 		
-			
 		Scanner scanner = new Scanner(System.in);
 		while(true){
 			System.out.println("Select a hall:");
@@ -41,7 +40,19 @@ public class UserApp {
 			
 			System.out.println("Enter number of tickets:");
 			Integer numTickets = Integer.valueOf(scanner.nextLine());
-						
+			
+			int availableSpace = chosenHall.getAvailableSpace(tickets, chosenHour);
+			if(availableSpace<numTickets){
+				System.out.println("There is not enough space for "+numTickets+" people");
+				continue;
+			}
+			List<Ticket> contiguousSeats = chosenHall.getContiguousSeats(tickets, chosenHour, numTickets);
+			if(contiguousSeats.size()>0){
+				System.out.println("Tickets are listed below:");
+				System.out.println(contiguousSeats);
+				tickets.addAll(contiguousSeats);
+				continue;
+			}
 			
 		}
 		
