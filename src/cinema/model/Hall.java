@@ -38,6 +38,10 @@ public class Hall {
 		return name;
 	}
 
+	public int getId() {
+		return id;
+	}
+
 	@Override
 	public String toString() {
 		return "Hall [id=" + id + ", rows=" + rows + ", cols=" + cols
