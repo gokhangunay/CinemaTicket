@@ -1,6 +1,7 @@
 package cinema.user.ui;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -20,6 +21,7 @@ public class UserApp {
 		halls.add(h1);
 		halls.add(h2);
 		
+			
 		Scanner scanner = new Scanner(System.in);
 		while(true){
 			System.out.println("Select a hall:");
@@ -44,6 +46,15 @@ public class UserApp {
 		}
 		
 		
+	}
+	
+	private static void printSeats(boolean[][] seats){
+		for (int i = 0; i < seats.length; i++) {
+			for (int j = 0; j < seats[i].length; j++) {
+				System.out.print(seats[i][j]+"\t");
+			}
+			System.out.println();
+		}
 	}
 
 }
