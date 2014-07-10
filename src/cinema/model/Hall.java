@@ -1,5 +1,6 @@
 package cinema.model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -43,6 +44,30 @@ public class Hall {
 				+ ", name=" + name + "]";
 	}
 	
+	public List<Ticket> getContiguousSeats(List<Ticket> tickets, Hour hour, int numPeople){
+		boolean[][] emptySeats = getEmptySeats(tickets, hour);
+		int counter = 0;
+		List<Ticket> result = new ArrayList<>();
+		for (int i = 0; i < emptySeats.length; i++) {
+			counter = 0;
+			for (int j = 0; j < emptySeats[i].length; j++) {
+				if(emptySeats[i][j]){
+					counter++;
+				}else{
+					counter = 0;
+				}
+				if(counter==numPeople){
+					for (int k = 0; k < numPeople; k++) {
+						Ticket t= new Ticket(this, hour, i+1, j+1-k);
+						result.add(t);
+					}
+					return result;
+				}
+			}
+		}
+		return result;
+	}
+	
 	public int getAvailableSpace(List<Ticket> tickets, Hour hour){
 		boolean[][] emptySeats = getEmptySeats(tickets, hour);
 		int available = 0;
@@ -67,7 +92,7 @@ public class Hall {
 
 		for (Ticket ticket : tickets) {
 			if (ticket.getHour().equals(hour) && ticket.getHall().equals(this)) {
-				emptySeats[ticket.getRow()][ticket.getCol()] = false;
+				emptySeats[ticket.getRow()-1][ticket.getCol()-1] = false;
 			}
 		}
 
