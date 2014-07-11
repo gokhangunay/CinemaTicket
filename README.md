@@ -6,7 +6,7 @@ Final project example for OBSS Java Summer School 2014.
 Notice
 ======
 
-In order the application to work, you have to create a file named `app.properties` with the following content:
+In order the application to work, you have to create a file named `app.properties` in the root folder of the project, with the following content:
 
 ```
 db.url=db_url
