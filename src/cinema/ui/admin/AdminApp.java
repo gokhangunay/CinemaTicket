@@ -1,5 +1,6 @@
-package cinema.admin.ui;
+package cinema.ui.admin;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -9,11 +10,9 @@ import java.util.Scanner;
 
 import cinema.model.Hall;
 import cinema.repository.HallRepository;
+import cinema.ui.PropertyReader;
 
 public class AdminApp {
-	private static final String DB_URL = "jdbc:postgresql://localhost/cinema";
-	private static final String DB_USER = "postgres";
-	private static final String DB_PASS = "1234";
 	
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
@@ -59,7 +58,16 @@ public class AdminApp {
 			ex.printStackTrace();
 			System.exit(-1);
 		}
-		return DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+		PropertyReader propertyReader = null;
+		try {
+			propertyReader = new PropertyReader();
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.exit(-1);
+		}
+		return DriverManager.getConnection(propertyReader.getDBURL(), 
+				propertyReader.getDBUser(), 
+				propertyReader.getDBPassword());
 	}
 
 }

@@ -1,11 +1,13 @@
-package cinema.user.ui;
+package cinema.ui.user;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Properties;
 import java.util.Scanner;
 
 import cinema.model.Hall;
@@ -13,12 +15,9 @@ import cinema.model.Hour;
 import cinema.model.Ticket;
 import cinema.repository.HallRepository;
 import cinema.repository.TicketRepository;
+import cinema.ui.PropertyReader;
 
 public class UserApp {
-
-	private static final String DB_URL = "jdbc:postgresql://localhost/cinema";
-	private static final String DB_USER = "postgres";
-	private static final String DB_PASS = "1234";
 
 	public static void main(String[] args) {
 
@@ -165,7 +164,16 @@ public class UserApp {
 			ex.printStackTrace();
 			System.exit(-1);
 		}
-		return DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+		PropertyReader propertyReader = null;
+		try {
+			propertyReader = new PropertyReader();
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.exit(-1);
+		}
+		return DriverManager.getConnection(propertyReader.getDBURL(), 
+				propertyReader.getDBUser(), 
+				propertyReader.getDBPassword());
 	}
 
 }
