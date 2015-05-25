@@ -26,7 +26,11 @@ public class AdminApp {
 			e.printStackTrace();
 			System.exit(-1);
 		}
+<<<<<<< HEAD
 		List<Hall> halls = new ArrayList<Hall>(repository.getAll());
+=======
+		List<Hall> halls = new ArrayList<>(repository.getAll());
+>>>>>>> d2809d575d4e0bc940057c8cc016360104cb1217
 		while(true){
 			System.out.println("Enter a hall (rowsxcols):");
 			current = scanner.nextLine();

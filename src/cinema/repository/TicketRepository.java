@@ -37,6 +37,7 @@ public class TicketRepository extends AbstractRepository<Ticket>{
 				hallMap.put(hall.getId(), hall);
 			}
 			List<Ticket> tickets = new ArrayList<Ticket>();
+
 			while(rs.next()){
 				Ticket ticket = new Ticket(rs.getInt("id"), hallMap.get(rs.getInt("hallId")), Hour.values()[rs.getInt("hour")], rs.getInt("row"), rs.getInt("col"));
 				tickets.add(ticket);

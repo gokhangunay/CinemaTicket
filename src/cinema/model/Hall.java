@@ -51,6 +51,7 @@ public class Hall {
 	public List<Ticket> getSeats(List<Ticket> tickets, Hour hour, int numPeople){
 		boolean[][] emptySeats = getEmptySeats(tickets, hour);
 		List<Ticket> result = new ArrayList<Ticket>();
+
 		int counter = 0;
 		for (int i = 0; i < emptySeats.length; i++) {
 			for (int j = 0; j < emptySeats[i].length; j++) {
@@ -71,6 +72,7 @@ public class Hall {
 		boolean[][] emptySeats = getEmptySeats(tickets, hour);
 		int counter = 0;
 		List<Ticket> result = new ArrayList<Ticket>();
+
 		for (int i = 0; i < emptySeats.length; i++) {
 			counter = 0;
 			for (int j = 0; j < emptySeats[i].length; j++) {
