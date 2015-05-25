@@ -27,7 +27,7 @@ public class HallRepository extends AbstractRepository<Hall> {
 	public Collection<Hall> getAll() {
 		try {
 			ResultSet rs = getAllStatement.executeQuery();
-			List<Hall> halls = new ArrayList<>();
+			List<Hall> halls = new ArrayList<Hall>();
 			while(rs.next()){
 				Hall hall = new Hall(rs.getInt("id"), rs.getInt("rows"), rs.getInt("cols"), rs.getString("name"));
 				halls.add(hall);

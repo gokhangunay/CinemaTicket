@@ -26,7 +26,7 @@ public class AdminApp {
 			e.printStackTrace();
 			System.exit(-1);
 		}
-		List<Hall> halls = new ArrayList<>(repository.getAll());
+		List<Hall> halls = new ArrayList<Hall>(repository.getAll());
 		while(true){
 			System.out.println("Enter a hall (rowsxcols):");
 			current = scanner.nextLine();

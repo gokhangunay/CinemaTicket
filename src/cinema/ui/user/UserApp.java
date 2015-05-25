@@ -34,8 +34,8 @@ public class UserApp {
 			System.exit(-1);
 		}
 
-		List<Hall> halls = new ArrayList<>(hallRepository.getAll());
-		List<Ticket> tickets = new ArrayList<>(ticketRepository.getAll());
+		List<Hall> halls = new ArrayList<Hall>(hallRepository.getAll());
+		List<Ticket> tickets = new ArrayList<Ticket>(ticketRepository.getAll());
 
 		Scanner scanner = new Scanner(System.in);
 		Integer choice = null;
@@ -157,23 +157,28 @@ public class UserApp {
 	}
 
 	private static Connection getConnection() throws SQLException {
+		final String DEFAULT_DRIVER = "org.postgresql.Driver";
+		final String DEFAULT_URL = "jdbc:postgresql://localhost:5432/sinemabilet";
+		final String DEFAULT_USERNAME = "gokhangunay";
+		final String DEFAULT_PASSWORD = "";
+
+		Connection connection = null;
 		try {
-			Class.forName("org.postgresql.Driver");
-			System.out.println("Driver loaded.");
+			Class.forName(DEFAULT_DRIVER);
+
+			if ((DEFAULT_USERNAME == null) || (DEFAULT_PASSWORD == null) || (DEFAULT_USERNAME.trim().length() == 0) || (DEFAULT_PASSWORD.trim().length() == 0))
+			{
+				connection = DriverManager.getConnection(DEFAULT_URL);
+			}
+			else
+			{
+				connection = DriverManager.getConnection(DEFAULT_URL, DEFAULT_USERNAME, DEFAULT_PASSWORD);
+			}
 		} catch (ClassNotFoundException ex) {
 			ex.printStackTrace();
 			System.exit(-1);
 		}
-		PropertyReader propertyReader = null;
-		try {
-			propertyReader = new PropertyReader();
-		} catch (IOException e) {
-			e.printStackTrace();
-			System.exit(-1);
-		}
-		return DriverManager.getConnection(propertyReader.getDBURL(), 
-				propertyReader.getDBUser(), 
-				propertyReader.getDBPassword());
-	}
 
+		return  connection;
+	}
 }
