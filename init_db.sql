@@ -1,5 +1,5 @@
 --
--- PostgreSQL database dump
+-- gokhangunayQL database dump
 --
 
 -- Dumped from database version 9.3.4
@@ -38,7 +38,7 @@ SET default_with_oids = false;
 
 --
 -- TOC entry 171 (class 1259 OID 16580)
--- Name: halls; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: halls; Type: TABLE; Schema: public; Owner: gokhangunay; Tablespace: 
 --
 
 CREATE TABLE halls (
@@ -49,11 +49,11 @@ CREATE TABLE halls (
 );
 
 
-ALTER TABLE public.halls OWNER TO postgres;
+ALTER TABLE public.halls OWNER TO gokhangunay;
 
 --
 -- TOC entry 170 (class 1259 OID 16578)
--- Name: halls_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: halls_id_seq; Type: SEQUENCE; Schema: public; Owner: gokhangunay
 --
 
 CREATE SEQUENCE halls_id_seq
@@ -64,12 +64,12 @@ CREATE SEQUENCE halls_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.halls_id_seq OWNER TO postgres;
+ALTER TABLE public.halls_id_seq OWNER TO gokhangunay;
 
 --
 -- TOC entry 1993 (class 0 OID 0)
 -- Dependencies: 170
--- Name: halls_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: halls_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: gokhangunay
 --
 
 ALTER SEQUENCE halls_id_seq OWNED BY halls.id;
@@ -77,7 +77,7 @@ ALTER SEQUENCE halls_id_seq OWNED BY halls.id;
 
 --
 -- TOC entry 172 (class 1259 OID 16589)
--- Name: tickets; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: tickets; Type: TABLE; Schema: public; Owner: gokhangunay; Tablespace: 
 --
 
 CREATE TABLE tickets (
@@ -89,11 +89,11 @@ CREATE TABLE tickets (
 );
 
 
-ALTER TABLE public.tickets OWNER TO postgres;
+ALTER TABLE public.tickets OWNER TO gokhangunay;
 
 --
 -- TOC entry 173 (class 1259 OID 16600)
--- Name: tickets_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: tickets_id_seq; Type: SEQUENCE; Schema: public; Owner: gokhangunay
 --
 
 CREATE SEQUENCE tickets_id_seq
@@ -104,12 +104,12 @@ CREATE SEQUENCE tickets_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.tickets_id_seq OWNER TO postgres;
+ALTER TABLE public.tickets_id_seq OWNER TO gokhangunay;
 
 --
 -- TOC entry 1994 (class 0 OID 0)
 -- Dependencies: 173
--- Name: tickets_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: tickets_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: gokhangunay
 --
 
 ALTER SEQUENCE tickets_id_seq OWNED BY tickets.id;
@@ -117,7 +117,7 @@ ALTER SEQUENCE tickets_id_seq OWNED BY tickets.id;
 
 --
 -- TOC entry 1870 (class 2604 OID 16583)
--- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: id; Type: DEFAULT; Schema: public; Owner: gokhangunay
 --
 
 ALTER TABLE ONLY halls ALTER COLUMN id SET DEFAULT nextval('halls_id_seq'::regclass);
@@ -125,7 +125,7 @@ ALTER TABLE ONLY halls ALTER COLUMN id SET DEFAULT nextval('halls_id_seq'::regcl
 
 --
 -- TOC entry 1871 (class 2604 OID 16602)
--- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: id; Type: DEFAULT; Schema: public; Owner: gokhangunay
 --
 
 ALTER TABLE ONLY tickets ALTER COLUMN id SET DEFAULT nextval('tickets_id_seq'::regclass);
@@ -133,7 +133,7 @@ ALTER TABLE ONLY tickets ALTER COLUMN id SET DEFAULT nextval('tickets_id_seq'::r
 
 --
 -- TOC entry 1873 (class 2606 OID 16588)
--- Name: pk_halls; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: pk_halls; Type: CONSTRAINT; Schema: public; Owner: gokhangunay; Tablespace: 
 --
 
 ALTER TABLE ONLY halls
@@ -142,7 +142,7 @@ ALTER TABLE ONLY halls
 
 --
 -- TOC entry 1876 (class 2606 OID 16608)
--- Name: pk_tickets; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: pk_tickets; Type: CONSTRAINT; Schema: public; Owner: gokhangunay; Tablespace: 
 --
 
 ALTER TABLE ONLY tickets
@@ -151,7 +151,7 @@ ALTER TABLE ONLY tickets
 
 --
 -- TOC entry 1874 (class 1259 OID 16599)
--- Name: fki_ticket_hall; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+-- Name: fki_ticket_hall; Type: INDEX; Schema: public; Owner: gokhangunay; Tablespace: 
 --
 
 CREATE INDEX fki_ticket_hall ON tickets USING btree ("hallId");
@@ -159,7 +159,7 @@ CREATE INDEX fki_ticket_hall ON tickets USING btree ("hallId");
 
 --
 -- TOC entry 1877 (class 2606 OID 16594)
--- Name: fk_ticket_hall; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: fk_ticket_hall; Type: FK CONSTRAINT; Schema: public; Owner: gokhangunay
 --
 
 ALTER TABLE ONLY tickets
@@ -169,18 +169,18 @@ ALTER TABLE ONLY tickets
 --
 -- TOC entry 1991 (class 0 OID 0)
 -- Dependencies: 5
--- Name: public; Type: ACL; Schema: -; Owner: postgres
+-- Name: public; Type: ACL; Schema: -; Owner: gokhangunay
 --
 
 REVOKE ALL ON SCHEMA public FROM PUBLIC;
-REVOKE ALL ON SCHEMA public FROM postgres;
-GRANT ALL ON SCHEMA public TO postgres;
+REVOKE ALL ON SCHEMA public FROM gokhangunay;
+GRANT ALL ON SCHEMA public TO gokhangunay;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
 -- Completed on 2014-07-11 10:22:05 EEST
 
 --
--- PostgreSQL database dump complete
+-- gokhangunayQL database dump complete
 --
 
